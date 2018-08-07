@@ -8,6 +8,7 @@ export class Config {
     public width: number = 10;
     public height: number = 10;
     public direction: dirEnum = dirEnum.up;
+    public radius: number = 5;
 
     constructor(config: IConfig) {
         Object.assign(this, config);
@@ -25,6 +26,7 @@ export interface IConfig {
     width: number;
     height: number;
     direction: dirEnum;
+    radius: number;
 }
 
 export interface IPoint {

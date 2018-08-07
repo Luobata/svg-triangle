@@ -9,7 +9,8 @@ export default class Triangle {
     private config: IConfig;
 
     private start: IPoint;
-    private between: IPoint;
+    private b1: IPoint;
+    private b2: IPoint;
     private end: IPoint;
 
     constructor(config: IConfig) {
@@ -28,28 +29,38 @@ export default class Triangle {
             x: this.config.width,
             y: 0,
         };
-        let between!: IPoint;
+        let b1!: IPoint;
+        let b2!: IPoint;
 
         switch (this.config.direction) {
             case 'up':
-                between = {
-                    x: this.config.width / 2,
-                    y: this.config.height,
+                const margin: number = this.config.radius / Math.sqrt(2);
+                b1 = {
+                    x: this.config.width / 2 - margin,
+                    y: this.config.height - margin,
+                };
+                b2 = {
+                    x: this.config.width / 2 + margin,
+                    y: this.config.height - margin,
                 };
                 break;
             default:
         }
 
         this.start = start;
-        this.between = between;
+        this.b1 = b1;
+        this.b2 = b2;
         this.end = end;
     }
 
     private getSVG(): void {
         const path: string = `M ${this.start.x} ${this.start.y} L ${
-            this.between.x
-        } ${this.between.y} L ${this.end.x} ${this.end.y}`;
+            this.b1.x
+        } ${this.b1.y} A ${this.config.radius} ${this.config.radius} 0 0 0 ${
+            this.b2.x
+        } ${this.b2.y} L ${this.end.x} ${this.end.y}`;
 
+        // tslint:disable no-http-string
         const pathDom: SVGPathElement = document.createElementNS(
             'http://www.w3.org/2000/svg',
             'path',
@@ -58,12 +69,12 @@ export default class Triangle {
             'http://www.w3.org/2000/svg',
             'svg',
         );
+        // tslint:enable no-http-string
 
         pathDom.setAttribute('d', path);
-        svgDom.setAttribute('height', `${this.between.y}px`);
+        svgDom.setAttribute('height', `${this.b1.y}px`);
         svgDom.setAttribute('width', `${this.end.x}px`);
         svgDom.setAttribute('version', '1.1');
-        // svgDom.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
 
         svgDom.appendChild(pathDom);
 
