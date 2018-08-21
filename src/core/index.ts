@@ -5,6 +5,8 @@
 import svg from '@/core/svg';
 import { Config, IConfig, IPoint } from '@/lib/interface';
 
+let id: number = 0;
+
 export default class Triangle {
     public triangle: SVGSVGElement;
     private config: IConfig;
@@ -15,9 +17,17 @@ export default class Triangle {
     private b2: IPoint;
     private end: IPoint;
 
+    private filterId: string;
+
     constructor(config: IConfig) {
         this.config = new Config(config);
+        this.filterId = `data-filter-id${new Date().getTime()}-${id}`;
+        id = id + 1;
 
+        this.update();
+    }
+
+    public update(): void {
         this.getPoint();
         this.getSVG();
     }
@@ -93,7 +103,7 @@ export default class Triangle {
         if (this.config.shadow) {
             filterDom = this.getFilter();
             svgDom.appendChild(filterDom);
-            svgDom.setAttribute('filter', 'url(#filter)');
+            svgDom.setAttribute('filter', `url(#${this.filterId})`);
         }
 
         if (this.config.direction === 'up') {
@@ -103,6 +113,10 @@ export default class Triangle {
         } else if (this.config.direction === 'left') {
             svgDom.setAttribute('transform', 'rotate(270)');
         }
+
+        if (this.config.className) {
+            svgDom.setAttribute('class', this.config.className);
+        }
         svgDom.appendChild(pathDom);
 
         this.triangle = svgDom;
@@ -111,7 +125,7 @@ export default class Triangle {
     private getFilter(): SVGElement {
         const defs: SVGElement = svg('defs');
         const filter: SVGElement = svg('filter', {
-            id: 'filter',
+            id: this.filterId,
             x: '0',
             y: '0',
             width: '200%',

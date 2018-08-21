@@ -12,6 +12,7 @@ export class Config {
     public color: string = 'black';
     public border: string;
     public shadow: number = 0;
+    public className: string;
 
     constructor(config: IConfig) {
         Object.assign(this, config);
@@ -33,6 +34,7 @@ export interface IConfig {
     color: string;
     border: string;
     shadow: number;
+    className: string;
 }
 
 export interface IPoint {
