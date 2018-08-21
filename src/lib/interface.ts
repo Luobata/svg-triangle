@@ -7,9 +7,10 @@
 export class Config {
     public width: number = 10;
     public height: number = 10;
-    public direction: dirEnum = dirEnum.up;
+    public direction: dirEnum = dirEnum.down;
     public radius: number = 5;
     public color: string = 'black';
+    public border: string;
     public shadow: number = 0;
 
     constructor(config: IConfig) {
@@ -30,6 +31,7 @@ export interface IConfig {
     direction: dirEnum;
     radius: number;
     color: string;
+    border: string;
     shadow: number;
 }
 

@@ -34,25 +34,20 @@ export default class Triangle {
         let between!: IPoint;
         let b1!: IPoint;
         let b2!: IPoint;
+        const margin: number = this.config.radius / Math.sqrt(2);
 
-        switch (this.config.direction) {
-            case 'up':
-                const margin: number = this.config.radius / Math.sqrt(2);
-                between = {
-                    x: this.config.width / 2,
-                    y: this.config.height,
-                };
-                b1 = {
-                    x: this.config.width / 2 - margin,
-                    y: this.config.height - margin,
-                };
-                b2 = {
-                    x: this.config.width / 2 + margin,
-                    y: this.config.height - margin,
-                };
-                break;
-            default:
-        }
+        between = {
+            x: this.config.width / 2,
+            y: this.config.height,
+        };
+        b1 = {
+            x: this.config.width / 2 - margin,
+            y: this.config.height - margin,
+        };
+        b2 = {
+            x: this.config.width / 2 + margin,
+            y: this.config.height - margin,
+        };
 
         this.start = start;
         this.b1 = b1;
@@ -77,24 +72,36 @@ export default class Triangle {
             'http://www.w3.org/2000/svg',
             'svg',
         );
-        // let filterDom: SVGFilterElement = document.createElementNS(
-        //     'http://www.w3.org/2000/svg',
-        //     'filter',
-        // );
         let filterDom!: SVGElement;
         // tslint:enable no-http-string
 
         pathDom.setAttribute('d', path);
         pathDom.setAttribute('fill', this.config.color);
-        svgDom.setAttribute('height', `${this.between.y}px`);
+        svgDom.setAttribute(
+            'height',
+            `${this.between.y > 0 ? this.between.y : -this.between.y}px`,
+        );
         svgDom.setAttribute('width', `${this.end.x}px`);
         svgDom.setAttribute('fill', 'transparent');
         svgDom.setAttribute('version', '1.1');
+
+        if (this.config.border) {
+            pathDom.setAttribute('stroke-width', '1');
+            pathDom.setAttribute('stroke', this.config.border);
+        }
 
         if (this.config.shadow) {
             filterDom = this.getFilter();
             svgDom.appendChild(filterDom);
             svgDom.setAttribute('filter', 'url(#filter)');
+        }
+
+        if (this.config.direction === 'up') {
+            svgDom.setAttribute('transform', 'rotate(180)');
+        } else if (this.config.direction === 'right') {
+            svgDom.setAttribute('transform', 'rotate(90)');
+        } else if (this.config.direction === 'left') {
+            svgDom.setAttribute('transform', 'rotate(270)');
         }
         svgDom.appendChild(pathDom);
 
@@ -125,7 +132,7 @@ export default class Triangle {
         const feGaussianBlur: SVGElement = svg('feGaussianBlur', {
             result: 'blurOUt',
             in: 'offOut',
-            stdDeviation: '5',
+            stdDeviation: this.config.shadow.toString(),
         });
         const feBlend: SVGElement = svg('feBlend', {
             in: 'SourceGraphic',
