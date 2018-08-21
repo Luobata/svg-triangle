@@ -30,11 +30,22 @@
             -webkit-border-radius: 5px;
         }
 
+        .wrap {
+            margin: 100px;
+            font-size: 0;
+        }
+
         .box {
             width: 100px;
             height: 100px;
-            position: absolute;
-            background: blue
+            background: yellow;
+            border-radius: 2px;
+            border: 1px solid red;
+        }
+
+        .triangle {
+            margin-top: -1px;
+            margin-left: 5px
         }
     </style>
 </head>
@@ -45,7 +56,9 @@
     <feBlend in="SourceGraphic" in2="blurOut" mode="normal"></feBlend>
 </filter> -->
 
-<!-- <div class="box"></div> -->
+<div class="wrap">
+    <div class="box"></div>
+</div>
 
 <body>
     <script type="text/javascript">
