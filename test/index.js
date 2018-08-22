@@ -2,9 +2,9 @@ import Triangle from '../src/';
 
 window.onload = () => {
     const svg = new Triangle({
-        width: 20,
-        height: 10,
-        shadow: 0,
+        width: 80,
+        height: 30,
+        shadow: 1,
         radius: 2,
         color: 'yellow',
         border: 'red',

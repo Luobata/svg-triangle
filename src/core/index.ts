@@ -135,13 +135,14 @@ export default class Triangle {
             result: 'offOut',
             in: 'SourceAlpha',
             dx: '0',
-            dy: '1',
+            dy: '0.5',
         });
         const feColorMatric: SVGElement = svg('feColorMatrix', {
             result: 'matrixOut',
             in: 'offOut',
             type: 'matrix',
-            values: '0.2 0 0 0 0 0 0.2 0 0 0 0 0 0.2 0 0 0 0 0 1 0',
+            // values: '0.2 0 0 0 0 0 0.2 0 0 0 0 0 0.2 0 0 0 0 0 1 0',
+            values: '0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0',
         });
         const feGaussianBlur: SVGElement = svg('feGaussianBlur', {
             result: 'blurOUt',
