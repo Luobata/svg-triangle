@@ -128,6 +128,7 @@ export default class Triangle {
             id: this.filterId,
             x: '0',
             y: '0',
+            // stdDeviation: '2',
             width: '200%',
             height: '200%',
         });
@@ -135,14 +136,17 @@ export default class Triangle {
             result: 'offOut',
             in: 'SourceAlpha',
             dx: '0',
-            dy: '0.5',
+            dy: '5',
+            // dy: this.config.shadow.toString(),
         });
         const feColorMatric: SVGElement = svg('feColorMatrix', {
             result: 'matrixOut',
+            // result: 'colormatrix',
             in: 'offOut',
+            // in: 'blur',
             type: 'matrix',
             // values: '0.2 0 0 0 0 0 0.2 0 0 0 0 0 0.2 0 0 0 0 0 1 0',
-            values: '0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0',
+            values: '0 0 0 0 0' + '0 0 0 0 0' + '0 0 0 0 0' + '0 0 0 0.2 0',
         });
         const feGaussianBlur: SVGElement = svg('feGaussianBlur', {
             result: 'blurOUt',
