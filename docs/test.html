@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+
+<head>
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border: 1px solid #B3B2B2;
+            background-color: #D3D3D3;
+            -webkit-border-radius: 5px;
+        }
+
+        .wrap {
+            margin: 100px;
+            font-size: 0;
+        }
+
+        .dom-content {
+            width: 800px;
+            height: 200px;
+            padding: 12px;
+            font-size: 16px;
+            font-family: PingFang-SC;
+            color: #222;
+            resize: none;
+        }
+
+        .label {
+            font-size: 16px;
+            font-family: PingFang-SC;
+            color: #222;
+            height: 20px;
+            line-height: 20px;
+            margin-bottom: 16px;
+        }
+
+        input {
+            margin-left: 16px;
+            height: 20px;
+            line-height: 20px;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background: yellow;
+            border-radius: 2px;
+            border: 1px solid red;
+            box-shadow: 2px 4px 4px rgba(0, 0, 0, .2);
+        }
+
+        .config {
+            width: 300px;
+        }
+
+        #button {
+            width: 80px;
+            height: 20px;
+            background: #60af35;
+            color: #fff;
+            border-radius: 4px;
+            margin-right: 32px;
+            font-size: 16px;
+            font-family: PingFang-SC;
+            outline: none;
+        }
+
+        .config,
+        #button,
+        .dom-content,
+        .triangle {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .triangle {
+            /* filter: drop-shadow(2px 6px 4px rgba(0, 0, 0, .2)); */
+        }
+    </style>
+</head>
+
+<div class="wrap">
+    <div class="config">
+        <div class="label">
+            width:
+            <input value="100" type="text" id="width">
+        </div>
+        <div class="label">
+            height:
+            <input value="50" type="text" id="height">
+        </div>
+        <div class="label">
+            direction:
+            <input value="top" type="text" id="direction">
+        </div>
+        <div class="label">
+            radius:
+            <input value="10" type="text" id="radius">
+        </div>
+        <div class="label">
+            color:
+            <input value="yellow" type="text" id="color">
+        </div>
+        <div class="label">
+            border:
+            <input value="" type="text" id="border">
+        </div>
+        <div class="label">
+            shadow-offsetX:
+            <input value="0" type="text" id="shadow-offsetX">
+        </div>
+        <div class="label">
+            shadow-offsetY:
+            <input value="4" type="text" id="shadow-offsetY">
+        </div>
+        <div class="label">
+            shadow-blur:
+            <input value="4" type="text" id="shadow-blur">
+        </div>
+        <div class="label">
+            shadow-opacity:
+            <input value="0.2" type="text" id="shadow-opacity">
+        </div>
+        <div class="label">
+            dom:
+            <textarea name="" id="" cols="30" rows="10" class="dom-content"></textarea>
+        </div>
+    </div>
+    <input id="button" type="button" value="刷新">
+
+</div>
+
+<body>
+    <script type="text/javascript" src="./triangle.js">
+    </script>
+    <script type="text/javascript">
+        var className = 'triangle';
+        var triangleDom = document.querySelector('.' + className)
+        window.onload = function () {
+            var button = document.querySelector('#button')
+            button.addEventListener('click', update)
+            update();
+        }
+        function update() {
+            if (triangleDom) {
+                triangleDom.remove();
+            }
+            var tri = new triangle.default({
+                width: document.querySelector('#width').value || 10,
+                height: document.querySelector('#height').value || 10,
+                direction: document.querySelector('#direction').value || 'top',
+                radius: document.querySelector('#radius').value || 5,
+                color: document.querySelector('#color').value || 'black',
+                border: document.querySelector('#border').value,
+                shadow: {
+                    offsetX: document.querySelector('#shadow-offsetX').value || 0,
+                    offsetY: document.querySelector('#shadow-offsetY').value || 2,
+                    blur: document.querySelector('#shadow-blur').value || 4,
+                    opacity: document.querySelector('#shadow-opacity').value || 0.2,
+                },
+                className: className,
+            }).triangle
+
+            document.querySelector('.wrap').appendChild(tri)
+            triangleDom = tri
+            document.querySelector('.dom-content').value = tri.outerHTML
+        }
+    </script>
+</body>
+
+</html>
