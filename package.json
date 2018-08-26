@@ -4,6 +4,7 @@
     "description": "svg triangle generator with radius shadow and border",
     "main": "dist/triangle.js",
     "module": "dist/triangle.esm.js",
+    "types": "src/index.d.ts",
     "scripts": {
         "build": "node build/build.js",
         "build:esm": "rollup -c build/rollup.config.js && rm -rf .rpt2_cache",

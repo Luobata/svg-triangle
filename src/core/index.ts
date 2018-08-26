@@ -20,14 +20,17 @@ export default class Triangle {
     private filterId: string;
 
     constructor(config: IConfig) {
-        this.config = new Config(config);
+        // this.config = new Config(config);
         this.filterId = `data-filter-id${new Date().getTime()}-${id}`;
         id = id + 1;
 
-        this.update();
+        this.update(config);
     }
 
-    public update(): void {
+    public update(config?: IConfig): void {
+        if (config) {
+            this.config = new Config(config);
+        }
         this.getPoint();
         this.getSVG();
     }
