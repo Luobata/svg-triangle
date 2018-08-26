@@ -8,6 +8,9 @@ window.onload = () => {
         color: 'yellow',
         border: 'red',
         className: 'triangle',
+        shadow: {
+            opacity: 0.2,
+        },
     });
     const svg2 = new Triangle({
         width: 200,

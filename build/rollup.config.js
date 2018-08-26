@@ -7,13 +7,13 @@ import path from 'path';
 import typescript from 'rollup-plugin-typescript2';
 
 module.exports = {
-    input: 'src/svg-triangle.ts',
-    name: 'svg-triangle',
+    input: 'src/core/svg.ts',
+    name: 'triangle',
     sourcemap: true,
     output: {
-        file: 'dist/svg-triangle.esm.js',
+        file: 'dist/triangle.esm.js',
         format: 'es',
-        name: 'svg-triangle',
+        name: 'triangle',
         sourcemap: true,
     },
     plugins: [
