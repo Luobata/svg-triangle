@@ -4,6 +4,14 @@
 
 // TODO 有没有好一点的实现方式赋默认值
 
+export interface Ishadow {
+    offsetX?: number | string;
+    offsetY?: number | string;
+    blur?: number | string;
+    spread?: number | string;
+    opacity?: number | string;
+}
+
 export class Config {
     public width: number = 10;
     public height: number = 10;
@@ -11,11 +19,17 @@ export class Config {
     public radius: number = 5;
     public color: string = 'black';
     public border: string;
-    public shadow: number = 0;
+    public shadow: Ishadow = {};
     public className: string;
 
     constructor(config: IConfig) {
         Object.assign(this, config);
+        this.shadow = {
+            offsetX: this.shadow.offsetX || 0,
+            offsetY: this.shadow.offsetY || 2,
+            blur: this.shadow.blur || 4,
+            opacity: this.shadow.opacity || 0.2,
+        };
     }
 }
 
@@ -33,7 +47,7 @@ export interface IConfig {
     radius: number;
     color: string;
     border: string;
-    shadow: number;
+    shadow: Ishadow;
     className: string;
 }
 

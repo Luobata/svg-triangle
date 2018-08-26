@@ -4,7 +4,6 @@ window.onload = () => {
     const svg = new Triangle({
         width: 80,
         height: 30,
-        shadow: 1,
         radius: 2,
         color: 'yellow',
         border: 'red',
@@ -13,7 +12,6 @@ window.onload = () => {
     const svg2 = new Triangle({
         width: 200,
         height: 100,
-        shadow: 5,
         radius: 20,
         color: 'yellow',
         border: 'red',
@@ -22,7 +20,6 @@ window.onload = () => {
     const svg3 = new Triangle({
         width: 20,
         height: 10,
-        shadow: 1,
         radius: 2,
         color: 'yellow',
         border: 'red',
@@ -31,7 +28,6 @@ window.onload = () => {
     const svg4 = new Triangle({
         width: 20,
         height: 10,
-        shadow: 1,
         radius: 2,
         color: 'yellow',
         border: 'red',

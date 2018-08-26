@@ -128,26 +128,28 @@ export default class Triangle {
             id: this.filterId,
             x: '0',
             y: '0',
-            // stdDeviation: '2',
             width: '200%',
             height: '200%',
         });
         const feOffset: SVGElement = svg('feOffset', {
             result: 'offOut',
             in: 'SourceAlpha',
-            dx: '0',
-            dy: '2',
-            // dy: this.config.shadow.toString(),
+            dx: `${this.config.shadow.offsetX}`,
+            dy: `${this.config.shadow.offsetY}`,
         });
         const feColorMatric: SVGElement = svg('feColorMatrix', {
             in: 'offOut',
             result: 'matrixOut',
-            values: '0 0 0 0 0 ' + '0 0 0 0 0 ' + '0 0 0 0 0 ' + '0 0 0 0.2 0',
+            values:
+                '0 0 0 0 0 ' +
+                '0 0 0 0 0 ' +
+                '0 0 0 0 0 ' +
+                `0 0 0 ${this.config.shadow.opacity} 0`,
         });
         const feGaussianBlur: SVGElement = svg('feGaussianBlur', {
             result: 'blurOUt',
             in: 'matrixOut',
-            stdDeviation: this.config.shadow.toString(),
+            stdDeviation: `${this.config.shadow.blur}`,
         });
         const feBlend: SVGElement = svg('feBlend', {
             in: 'SourceGraphic',
