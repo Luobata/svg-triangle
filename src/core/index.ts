@@ -136,21 +136,17 @@ export default class Triangle {
             result: 'offOut',
             in: 'SourceAlpha',
             dx: '0',
-            dy: '5',
+            dy: '2',
             // dy: this.config.shadow.toString(),
         });
         const feColorMatric: SVGElement = svg('feColorMatrix', {
-            result: 'matrixOut',
-            // result: 'colormatrix',
             in: 'offOut',
-            // in: 'blur',
-            type: 'matrix',
-            // values: '0.2 0 0 0 0 0 0.2 0 0 0 0 0 0.2 0 0 0 0 0 1 0',
-            values: '0 0 0 0 0' + '0 0 0 0 0' + '0 0 0 0 0' + '0 0 0 0.2 0',
+            result: 'matrixOut',
+            values: '0 0 0 0 0 ' + '0 0 0 0 0 ' + '0 0 0 0 0 ' + '0 0 0 0.2 0',
         });
         const feGaussianBlur: SVGElement = svg('feGaussianBlur', {
             result: 'blurOUt',
-            in: 'offOut',
+            in: 'matrixOut',
             stdDeviation: this.config.shadow.toString(),
         });
         const feBlend: SVGElement = svg('feBlend', {
