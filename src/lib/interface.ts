@@ -11,7 +11,6 @@ export interface Ishadow {
     spread?: number | string;
     opacity?: number | string;
 }
-
 export class Config {
     public width: number = 10;
     public height: number = 10;
@@ -41,14 +40,14 @@ export enum dirEnum {
 }
 
 export interface IConfig {
-    width: number;
-    height: number;
-    direction: dirEnum;
-    radius: number;
-    color: string;
-    border: string;
-    shadow: Ishadow;
-    className: string;
+    width?: number;
+    height?: number;
+    direction?: dirEnum;
+    radius?: number;
+    color?: string;
+    border?: string;
+    shadow?: Ishadow;
+    className?: string;
 }
 
 export interface IPoint {
