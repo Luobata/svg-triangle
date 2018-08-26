@@ -1,6 +1,6 @@
 {
     "name": "svg-triangle",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "svg triangle generator with radius shadow and border",
     "main": "dist/triangle.js",
     "module": "dist/triangle.esm.js",

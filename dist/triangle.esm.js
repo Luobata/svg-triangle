@@ -154,9 +154,9 @@ var Triangle = function () {
             if (this.config.direction === 'up') {
                 svgDom.setAttribute('transform', 'rotate(180)');
             } else if (this.config.direction === 'right') {
-                svgDom.setAttribute('transform', 'rotate(90)');
-            } else if (this.config.direction === 'left') {
                 svgDom.setAttribute('transform', 'rotate(270)');
+            } else if (this.config.direction === 'left') {
+                svgDom.setAttribute('transform', 'rotate(90)');
             }
             if (this.config.className) {
                 svgDom.setAttribute('class', this.config.className);

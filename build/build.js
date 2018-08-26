@@ -30,4 +30,5 @@ webpack(webpackConfig, function(err, stats) {
             chunkModules: false,
         }) + '\n',
     );
+    cp('-f', 'dist/*', 'docs');
 });
