@@ -7,7 +7,7 @@ import path from 'path';
 import typescript from 'rollup-plugin-typescript2';
 
 module.exports = {
-    input: 'src/core/svg.ts',
+    input: 'src/core/index.ts',
     name: 'triangle',
     sourcemap: true,
     output: {
